@@ -1,1 +1,5 @@
-console.log("Hola mundo")
+console.log("Hola mundo");
+
+function login() {
+    //login creado
+}
