@@ -1,11 +1,177 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Curso de Git - Panel de Ejercicios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #4f46e5;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 4rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .menu-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 20px -3px rgb(79 70 229 / 0.1);
+        }
+
+        /* Colores dinámicos para los hovers individuales */
+        .card-t1:hover { border-color: #0284c7; }
+        .card-t2:hover { border-color: #4f46e5; }
+        .card-t3:hover { border-color: #10b981; }
+        .card-t4:hover { border-color: #6366f1; }
+
+        .theme-badge {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .action-link {
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .action-link::after {
+            content: '→';
+            transition: transform 0.2s ease;
+        }
+
+        .menu-card:hover .action-link::after {
+            transform: translateX(4px);
+        }
+    </style>
 </head>
 <body>
+
+    <div class="container">
+        <header>
+            <h1>Mi Repositorio de Ejercicios</h1>
+            <p class="subtitle">Curso Práctico de Git</p>
+        </header>
+
+        <nav class="menu-grid">
+            
+            <a href="tema1.html" class="menu-card card-t1">
+                <div>
+                    <div class="theme-badge" style="color: #0284c7;">Tema 1</div>
+                    <h2>Introducción a Git</h2>
+                    <p>Conceptos esenciales, configuraciones globales de usuario, ciclo de vida de los archivos (Staging), commits locales y tipos de ramas estándar (feature, bugfix, hotfix).</p>
+                </div>
+                <div class="action-link" style="color: #0284c7;">Ver ejercicios</div>
+            </a>
+
+            <a href="tema2.html" class="menu-card card-t2">
+                <div>
+                    <div class="theme-badge" style="color: #4f46e5;">Tema 2</div>
+                    <h2>Ramas y Conflictos</h2>
+                    <p>Gestión de ramas locales y remotas, fusión con merge, rebase, resolución de conflictos y almacenamiento temporal con stash.</p>
+                </div>
+                <div class="action-link" style="color: #4f46e5;">Ver ejercicios</div>
+            </a>
+
+            <a href="tema3.html" class="menu-card card-t3">
+                <div>
+                    <div class="theme-badge" style="color: #10b981;">Tema 3</div>
+                    <h2>Colaboración</h2>
+                    <p>Flujos distribuidos (Forks), gestión de colaboradores, tags, releases, configuración de .gitignore y metodologías de trabajo en equipo.</p>
+                </div>
+                <div class="action-link" style="color: #10b981;">Ver ejercicios</div>
+            </a>
+
+            <a href="tema4.html" class="menu-card card-t4">
+                <div>
+                    <div class="theme-badge" style="color: #6366f1;">Tema 4</div>
+                    <h2>Automatización</h2>
+                    <p>Uso de Git Hooks (pre-commit, pre-push), entorno GitLab (Roles, Merge Requests), flujos de integración continua (Pipelines) y Secrets en GitHub Actions.</p>
+                </div>
+                <div class="action-link" style="color: #6366f1;">Ver ejercicios</div>
+            </a>
+
+        </nav>
     
+    </div>
+
 </body>
 </html>

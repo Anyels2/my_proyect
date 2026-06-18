@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - Tema 1: Introducción a Git</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #0284c7;
+            --primary-light: #f0f9ff;
+            --accent: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --input-bg: #fdfdfd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .statement {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-inline {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .solution-section {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .solution-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .response-area {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .image-container {
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 15px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .challenge-card {
+            border-left: 5px solid var(--accent);
+        }
+
+        .challenge-card .badge {
+            background-color: #fef3c7;
+            color: #b45309;
+        }
+
+        /* Estilos de tablas */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+            font-size: 0.95rem;
+        }
+        .styled-table th, .styled-table td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+        }
+        .styled-table th {
+            background-color: #f1f5f9;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            body { padding: 1rem 0.5rem; }
+            .card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" style="position: fixed; top: 20px; left: 20px; display: flex; align-items: center; gap: 8px; background: #ffffff; color: #475569; text-decoration: none; padding: 10px 16px; border-radius: 30px; font-weight: 500; font-size: 0.9rem; box-shadow: 0 4px 10px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; transition: all 0.2s ease; z-index: 9999;" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#0284c7'; this.style.color='#0284c7';" onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.color='#475569';">
+        ← Volver al Inicio
+    </a>
+
+    <div class="container">
+        <header>
+            <h1>Ejercicios - Tema 1: Introducción</h1>
+            <p class="subtitle">A continuación, encontrarás ejercicios prácticos sobre la introducción a Git, GitHub y GitLab y sobre trabajar con ramas.</p>
+        </header>
+
+        <main class="grid">
+            
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 1</span>
+                    <h2>Conceptos básicos</h2>
+                </div>
+                <p class="statement">Explica con tus palabras qué es Git y para qué sirve. Después, responde también qué diferencia existe entre Git y GitHub.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Git</strong> es un programa local de control de versiones. <strong>GitHub</strong> es un servicio online en la nube que aloja un sistema de control de versiones Git y facilita el trabajo en equipo de forma remota.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 2</span>
+                    <h2>Instalación de Git</h2>
+                </div>
+                <p class="statement">Instala Git en tu equipo según tu sistema operativo. Comprueba la versión instalada desde la terminal.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Comando utilizado:</strong><br>
+                        <code style="font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 5px;">git --version</code>
+                    </div>
+                    <div class="image-container">
+                        <img src="image-2.png" alt="Verificación de versión de Git">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 3</span>
+                    <h2>Configuración inicial</h2>
+                </div>
+                <p class="statement">Configura Git con tu nombre y tu correo electrónico en modo global. Comprueba que se haya guardado.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Comando utilizado para verificar la lista de configuraciones activas:</strong><br>
+                        <code style="font-family: monospace; background: #f1f5f9; padding: 4px 8px; border-radius: 4px; display: inline-block; margin-top: 5px;">git config --list</code>
+                    </div>
+                    <div class="image-container">
+                        <img src="image-3.png" alt="Configuración de credenciales globales">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 4</span>
+                    <h2>Crear tu primer repositorio</h2>
+                </div>
+                <p class="statement">Crea una carpeta llamada <span class="code-inline">first_repository</span>, inicializa un repositorio Git y explica qué carpeta interna oculta se genera.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Comando utilizado:</strong> <code>git init</code><br><br>
+                        <strong>Función técnica de la carpeta generada:</strong> Se crea una carpeta interna y oculta llamada <code>.git</code>. Esta carpeta es el núcleo del control de versiones; contiene toda la base de datos de historial de cambios, metadatos, configuraciones de las ramas y los archivos del repositorio de forma transparente.
+                    </div>
+                    <div class="image-container">
+                        <img src="image-4.png" alt="Inicialización de repositorio">
+                    </div>
+                    <div class="image-container">
+                        <img src="image-5.png" alt="Carpeta oculta .git generada">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 5</span>
+                    <h2>Primer archivo y estado del repositorio</h2>
+                </div>
+                <p class="statement">Crea un archivo llamado <span class="code-inline">README.md</span>, comprueba el estado del repositorio y describe qué información te muestra Git.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7; min-height: 200px;" readonly>
+                        <strong>Comando utilizado:</strong> <code>git status</code><br><br>
+                        <strong>Análisis de la información arrojada en la terminal:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>No commits yet:</strong> Todavía no se ha realizado ningún guardado permanente en el historial del repositorio.</li>
+                            <li><strong>Untracked files (Archivos sin seguimiento):</strong> Indica con el archivo <code>README.md</code> en color rojo que Git ha detectado el nuevo archivo pero no lo está rastreando. Advierte que es necesario usar el comando <code>git add</code> para incluirlo en los archivos listos para el próximo commit.</li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <img src="image-6.png" alt="Resultado de comando git status inicial">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 6</span>
+                    <h2>Añadir y guardar cambios</h2>
+                </div>
+                <p class="statement">Añade el archivo al área de preparación, realiza un commit con un mensaje descriptivo y consulta el historial de commits.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7; min-height: 380px; overflow-y: auto;" readonly>
+                        <strong>1. Preparar archivo:</strong> <code>git add README.md</code> o <code>git add .</code><br>
+                        Al ejecutar de nuevo <code>git status</code> indica <em>Changes to be committed (new file: README.md)</em>. Esto confirma que está listo en la zona temporal para guardarse.<br>
+                        <div class="image-container" style="margin: 10px 0;"><img src="image-7.png" alt="Fase de Staging"></div>
+
+                        <strong>2. Confirmar cambios:</strong> <code>git commit -m "primer commit"</code><br>
+                        <ul style="margin-left: 20px;">
+                            <li><code>[master ...]</code>: Indica la rama activa donde se fijó el cambio.</li>
+                            <li><code>(root-commit)</code>: Indica el commit inicial de la historia del repositorio.</li>
+                            <li><code>638b3bc</code>: Es el identificador Hash SHA-1 acortado para rastrearlo.</li>
+                            <li><code>1 file changed, 3 insertions(+)</code>: Se modificó 1 archivo y se agregaron 3 líneas.</li>
+                        </ul>
+                        <div class="image-container" style="margin: 10px 0;"><img src="image-8.png" alt="Confirmación de commit"></div>
+
+                        <strong>3. Consultar historial:</strong> <code>git log</code><br>
+                        Muestra de forma detallada el Hash completo, autoría (nombre y correo configurados), fecha exacta y el mensaje descriptivo fijado.<br>
+                        <div class="image-container" style="margin: 10px 0;"><img src="image-9.png" alt="Visualización del log"></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 7</span>
+                    <h2>Clonar un repositorio</h2>
+                </div>
+                <p class="statement">Investiga el uso de <span class="code-inline">git clone</span> y describe un ejemplo realista de uso.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7; min-height: 140px;" readonly>
+                        <strong>Mecanismo de acción:</strong> Descarga una copia exacta local en tu computadora de un proyecto que se encuentra alojado en un servidor remoto de internet.<br><br>
+                        <strong>Ejemplo de comando aplicado:</strong><br>
+                        <code>git clone https://github.com/freeCodeCamp/freeCodeCamp.git</code>
+                    </div>
+                    <div class="image-container">
+                        <img src="image-10.png" alt="Copia de URL de descarga remota">
+                    </div>
+                    <div class="image-container">
+                        <img src="image-12.png" alt="Terminal ejecutando el clonado">
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 8</span>
+                    <h2>GUI de Git</h2>
+                </div>
+                <p class="statement">Busca e indica una interfaz gráfica elegida para trabajar con Git y sus ventajas.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Elección:</strong> Integración de control de fuentes en <strong>Visual Studio Code (VS Code)</strong>.<br><br>
+                        <strong>Ventajas frente a la terminal convencional:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Evita alternar aplicaciones ya que el editor incluye el control directo.</li>
+                            <li>Permite realizar un *diff* visual (pantalla dividida y colores) de las líneas editadas antes de enviar un commit.</li>
+                            <li>Simplifica la gestión de conflictos de fusión mediante botones interactivos intuitivos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 9</span>
+                    <h2>GitHub</h2>
+                </div>
+                <p class="statement">Crea un repositorio remoto llamado <span class="code-inline">tema1-git</span> y explica los pilares de usar GitHub.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7; min-height: 220px;" readonly>
+                        <strong>Proceso:</strong> Uso del botón "+" o "New" en la interfaz de GitHub para registrarlo.<br><br>
+                        <strong>¿Por qué utilizar plataformas en la nube?</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Respaldo:</strong> Salvaguarda el código ante cualquier rotura o fallo del equipo físico local.</li>
+                            <li><strong>Colaboración:</strong> Centraliza el desarrollo para que múltiples ingenieros programen simultáneamente.</li>
+                            <li><strong>Auditoría:</strong> Mantiene la traza pública y transparente de versiones.</li>
+                        </ul>
+                    </div>
+                    <div class="image-container"><img src="image-14.png" alt="Pulsar New en GitHub"></div>
+                    <div class="image-container"><img src="image-13.png" alt="Creación del repositorio tema1-git"></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 10</span>
+                    <h2>GitLab y comparación final</h2>
+                </div>
+                <p class="statement">Compara brevemente GitLab con GitHub indicando similitudes y diferencias críticas.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>En común:</strong> Ambas plataformas gestionan repositorios usando el núcleo central de comandos Git de manera idéntica.<br><br>
+                        <strong>Diferencia clave:</strong> <strong>GitLab</strong> se construyó desde su inicio con una visión "todo en uno" orientada fuertemente a DevOps, ofreciendo potentes sistemas integrados de automatizaciones (CI/CD) nativos. Por otro lado, <strong>GitHub</strong> destaca históricamente por su red de colaboración, comunidad social de desarrolladores e integraciones modulares a través de aplicaciones externas en su Marketplace.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 11</span>
+                    <h2>Crear y listar ramas</h2>
+                </div>
+                <p class="statement">Crea el repositorio <span class="code-inline">tema2-ramas</span>, inicializa el primer commit y genera las ramas <span class="code-inline">feature/header</span> y <span class="code-inline">feature/footer</span>. Lista las ramas.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Comandos secuenciales utilizados:</strong><br>
+                        <code>git branch feature/header</code><br>
+                        <code>git branch feature/footer</code><br>
+                        <code>git branch</code> (para listarlas todas; la rama con un asterisco y color verde denota la rama que se encuentra activa).
+                    </div>
+                    <div class="image-container"><img src="image-16.png" alt="Crear ramas"></div>
+                    <div class="image-container"><img src="image-17.png" alt="Listar ramas en consola"></div>
+                    <div class="image-container"><img src="image-18.png" alt="Estado de ramas"></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 12</span>
+                    <h2>Cambiar entre ramas</h2>
+                </div>
+                <p class="statement">Crea el archivo <span class="code-inline">header.html</span> en la rama header, guarda un commit y verifica su existencia al moverte a la rama footer.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #0284c7;" readonly>
+                        <strong>Comportamiento observado:</strong> El archivo <code>header.html</code> no existe ni se visualiza al cambiarse a la rama <code>feature/footer</code>.<br><br>
+                        <strong>Explicación de Git:</strong> Cada rama representa una línea del tiempo o historial de trabajo aislado. Al realizar el commit del nuevo archivo estando posicionados únicamente dentro de <code>feature/header</code>, los cambios quedan encapsulados y protegidos exclusivamente en ella, por lo que al cambiar de contexto, el directorio de trabajo se actualiza limpiando lo ajeno.
+                    </div>
+                    <div class="image-container"><img src="image-19.png" alt="Saltar a rama header"></div>
+                    <div class="image-container"><img src="image-20.png" alt="Escribir archivo header"></div>
+                    <div class="image-container"><img src="image-23.png" alt="Commit en la rama"></div>
+                    <div class="image-container"><img src="image-22.png" alt="Moverse a la rama footer"></div>
+                    <div class="image-container"><img src="image-21.png" alt="Validación de desaparición de archivo"></div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 13</span>
+                    <h2>Tipos de ramas</h2>
+                </div>
+                <p class="statement">Explica los flujos normalizados para las ramas de tipo feature, bugfix, release y hotfix.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <table class="styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tipo de Rama</th>
+                                <th>¿Para qué se utiliza?</th>
+                                <th>Ejemplo de Nombre Válido</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong><code>feature</code></strong></td>
+                                <td>Desarrollar nuevas funcionalidades o vistas aisladas del sistema.</td>
+                                <td><code>feature/login-google</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>bugfix</code></strong></td>
+                                <td>Subsanar incidencias encontradas en ciclos de pruebas previos a producción.</td>
+                                <td><code>bugfix/error-registro</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>release</code></strong></td>
+                                <td>Congelar y preparar la versión definitiva, puliendo detalles de entrega.</td>
+                                <td><code>release/v1.2.0</code></td>
+                            </tr>
+                            <tr>
+                                <td><strong><code>hotfix</code></strong></td>
+                                <td>Resolver fallos críticos de alta prioridad directamente expuestos en vivo.</td>
+                                <td><code>hotfix/caida-pasarela-pago</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="card challenge-card">
+                <div class="card-header">
+                    <span class="badge">Reto</span>
+                    <h2>Reto final opcional</h2>
+                </div>
+                <p class="statement">Conecta el repositorio local con tu cuenta remota de GitHub o GitLab para realizar una subida limpia.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="background-color: #f8fafc; border-left: 4px solid #f59e0b;" readonly>
+                        Conexión establecida con éxito vinculando la dirección SSH/HTTPS mediante el comando de enrutamiento remoto de Git y empujando el historial principal.
+                    </div>
+                    <div class="image-container"><img src="image-24.png" alt="Vincular servidor remoto origin"></div>
+                    <div class="image-container"><img src="image-25.png" alt="Push de la rama con éxito"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

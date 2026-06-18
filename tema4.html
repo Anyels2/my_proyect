@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - Tema 4: Automatización y Control de Cambios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --accent: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --input-bg: #fdfdfd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .statement {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-inline {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        .solution-section {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .solution-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .response-area {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        .image-container {
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .image-container:hover {
+            background-color: #f1f5f9;
+            border-color: #94a3b8;
+            color: #64748b;
+        }
+
+        .challenge-card {
+            border-left: 5px solid var(--accent);
+        }
+
+        .challenge-card .badge {
+            background-color: #fef3c7;
+            color: #b45309;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            body { padding: 1rem 0.5rem; }
+            .card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Ejercicios - Tema 4: Hooks, GitLab, Restore, Revert, Pipelines y GitHub Actions</h1>
+            <p class="subtitle">A continuación, encontrarás ejercicios prácticos sobre automatización de tareas y control de cambios en entornos profesionales.</p>
+        </header>
+
+        <main class="grid">
+            
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 1</span>
+                    <h2>Hook pre-commit y commit-msg</h2>
+                </div>
+                <p class="statement">Investiga qué es un hook en Git. Después, explica qué función tienen concretamente los hooks pre-commit y commit-msg. Finalmente, describe un ejemplo realista de uso.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 220px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Concepto de Git Hook:</strong> Son scripts automatizados que Git ejecuta de forma nativa antes o después de eventos clave (como commits, pushes o merges) para validar flujos de trabajo.<br><br>
+                        <strong>Tipos específicos:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>pre-commit:</strong> Se ejecuta antes de procesar el commit. Se usa para analizar el código de forma automática (pasando un Linter o formateador) garantizando que no se suban archivos con errores de sintaxis o malas prácticas.</li>
+                            <li><strong>commit-msg:</strong> Se ejecuta inmediatamente después de escribir el mensaje. Evalúa que el texto cumpla con un estándar específico, por ejemplo, verificar que empiece con el identificador de la tarea de Jira (ej. <code>[INDRA-123] Fix login error</code>).</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 2</span>
+                    <h2>Hook pre-push</h2>
+                </div>
+                <p class="statement">Explica qué hace el hook pre-push y en qué momento se ejecuta. Describe cómo podría utilizarse para impedir una subida incorrecta si los tests fallan.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Mecanismo pre-push:</strong> Se activa justo al ejecutar <code>git push</code>, antes de que los objetos se envíen de manera definitiva al servidor remoto.<br><br>
+                        <strong>Aplicación práctica:</strong> El script ejecuta la suite de pruebas automatizadas locales del proyecto (ej. <code>npm test</code>). Si alguna prueba unitaria falla, el script devuelve un código de salida distinto de cero (<code>exit 1</code>), lo que aborta automáticamente la subida. Esto actúa como un escudo de seguridad para que ningún desarrollador rompa la rama compartida por descuido.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 3</span>
+                    <h2>Crear un repositorio en GitLab y clonarlo</h2>
+                </div>
+                <p class="statement">Crea un nuevo repositorio en GitLab con el nombre tema5-gitlab. Copia la URL y clónalo en tu equipo.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 110px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Comando utilizado en la terminal local:</strong><br>
+                        <code style="font-family: monospace; display:block; background: #f1f5f9; padding: 8px; margin-top: 5px; border-radius: 4px;">git clone https://gitlab.com/tu-usuario/tema5-gitlab.git</code><br>
+                        Este comando descarga el repositorio vacío o inicializado de GitLab y lo vincula de forma automática bajo el nombre remoto habitual de <code>origin</code>.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 4</span>
+                    <h2>Add, commit y push en GitLab</h2>
+                </div>
+                <p class="statement">Crea un archivo README.md, añádelo al área de preparación, realiza un commit y sube los cambios al repositorio remoto de GitLab.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Flujo secuencial de comandos:</strong>
+                        <pre style="background: #f1f5f9; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.9rem; margin-top:5px;">
+echo "# Proyecto Tema 5 GitLab" > README.md
+git add README.md
+git commit -m "Docs: añadir archivo inicial README con descripción"
+git push origin main</pre>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del archivo README visible en la interfaz web de GitLab</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 5</span>
+                    <h2>Crear una rama y hacer un Merge Request</h2>
+                </div>
+                <p class="statement">Crea una rama, realiza un cambio y súbelo. Genera un Merge Request desde GitLab. Explica para qué sirve y su utilidad.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Concepto de Merge Request (MR):</strong> Es el equivalente en GitLab al <em>Pull Request</em> de GitHub. Es una solicitud formal para fusionar el código de una rama secundaria dentro de la rama principal.<br><br>
+                        <strong>Utilidad colaborativa:</strong> Funciona como un foro de revisión técnica. Permite a otros miembros del equipo examinar el código línea por línea, dejar comentarios de mejora, debatir soluciones y ejecutar análisis automatizados de calidad antes de incorporar el trabajo al código definitivo del cliente.
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura de la vista de Merge Request abierta en tu proyecto de GitLab</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 6</span>
+                    <h2>Roles en GitLab y gestión de miembros</h2>
+                </div>
+                <p class="statement">Investiga cómo se gestionan los miembros en GitLab. Explica la función de los roles y describe al menos dos diferentes.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 200px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Propósito del control de accesos:</strong> Garantiza el principio de mínimo privilegio en ingeniería de software. No todos los miembros deben poseer permisos idénticos para blindar las ramas críticas de producción frente a borrados o escrituras no autorizadas.<br><br>
+                        <strong>Descripción de Roles comunes:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Developer:</strong> Rol operativo estándar. Posee permisos de lectura y escritura completos para crear ramas secundarias y subir código, pero tiene prohibido aprobar Merge Requests protegidos o modificar la configuración estructural del proyecto.</li>
+                            <li><strong>Maintainer:</strong> Administrador técnico. Tiene autoridad absoluta para aceptar fusiones en ramas protegidas (como <code>main</code>), configurar variables de entorno del servidor y coordinar los lanzamientos de producción.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 7</span>
+                    <h2>git restore file</h2>
+                </div>
+                <p class="statement">Modifica un archivo bajo control sin hacer commit. Usa <span class="code-inline">git restore nombre-del-archivo</span> para deshacer los cambios.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 140px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Comando ejecutado:</strong> <code>git restore index.html</code><br><br>
+                        <strong>Efecto y comportamiento técnico:</strong> El comando descarta de forma fulminante e irreversible las modificaciones que se encontraban en el directorio de trabajo actual. Git sobreescribe el archivo local trayendo la última versión exacta que tenía guardada en el historial del último commit, dejando el comando <code>git status</code> limpio.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 8</span>
+                    <h2>git restore --staged file</h2>
+                </div>
+                <p class="statement">Modifica un archivo, añádelo con add y sácalo con <span class="code-inline">git restore --staged</span>. Explica la diferencia técnica.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Mecánica del flag --staged:</strong> Saca el archivo modificado del área de preparación (<em>Staging Area</em>) y lo devuelve al estado de cambios sin preparar (<em>Working Directory</em>).<br><br>
+                        <strong>Diferencia fundamental:</strong> 
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><code>git restore archivo</code>: Destruye el código modificado de tus archivos físicos de forma permanente.</li>
+                            <li><code>git restore --staged archivo</code>: **Conserva intactas tus líneas de código**, solo deshace la acción del <code>git add</code> para que no entre en el próximo commit de manera inmediata.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 9</span>
+                    <h2>git revert &lt;commit-hash&gt;</h2>
+                </div>
+                <p class="statement">Elige un commit antiguo y reviértelo utilizando su identificador hash. Comprueba el historial resultante.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 150px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Comando aplicado:</strong> <code>git revert a1b2c3d4</code><br><br>
+                        <strong>Comportamiento del historial:</strong> A diferencia de comandos destructivos como <code>git reset</code>, revert **respeta el pasado**. Git calcula el cambio inverso al commit especificado y genera automáticamente un **nuevo commit adicional** que anula los cambios perjudiciales. De esta forma, el historial se mantiene intacto y transparente para el resto de desarrolladores remotos.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 10</span>
+                    <h2>GitLab Revert</h2>
+                </div>
+                <p class="statement">Investiga la opción de revertir desde la interfaz web de GitLab. ¿En qué escenarios es útil y qué precauciones se deben contemplar?</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Escenario de uso óptimo:</strong> Es idóneo cuando un commit integrado recientemente a través de un Merge Request rompe el entorno de producción de forma imprevista. Cualquier responsable técnico puede presionar el botón "Revert" directamente en la web de GitLab para restaurar la estabilidad de inmediato sin necesidad de clonar o encender la terminal local.<br><br>
+                        <strong>Precaución crítica:</strong> Al generar un nuevo commit en el servidor remoto, se debe avisar de inmediato a los compañeros del equipo de ingeniería para que ejecuten un <code>git pull</code> obligatorio antes de continuar programando, evitando así desajustes de versiones en local.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 11</span>
+                    <h2>GitLab Pipelines</h2>
+                </div>
+                <p class="statement">Investiga qué es una pipeline en GitLab y qué ventajas estratégicas ofrece a los equipos de desarrollo.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>Concepto de Pipeline CI/CD:</strong> Es el motor de Integración y Despliegue Continuo de GitLab. Consiste en una serie de flujos o fases automatizadas (compilar, testear, analizar calidad y desplegar) controladas a través de un archivo centralizado llamado <code>.gitlab-ci.yml</code>.<br><br>
+                        <strong>Ventajas operativas:</strong> Elimina los errores humanos derivados de pruebas manuales. Si un programador sube un cambio que rompe la lógica del negocio o no compila, la pipeline "falla" de inmediato bloqueando la integración y blindando el software corporativo contra fallos en producción.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 12</span>
+                    <h2>GitHub Actions y Secrets</h2>
+                </div>
+                <p class="statement">Investiga GitHub Actions y explica el propósito fundamental de los Secrets dentro de la plataforma.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #4f46e5; overflow-y: auto;" readonly>
+                        <strong>GitHub Actions:</strong> Es la alternativa nativa de GitHub para orquestar pipelines de automatización basadas en archivos YAML.<br><br>
+                        <strong>Utilidad esencial de los Secrets:</strong> Son variables de entorno cifradas de forma segura. En flujos automatizados de producción se requiere interactuar con servidores, bases de datos o servicios de la nube mediante contraseñas, tokens de API o claves SSH. Los Secrets permiten inyectar estos datos en los scripts de forma segura impidiendo que queden expuestos como texto plano en el historial visible del repositorio.
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del panel de Secrets configurado en tu repositorio de GitHub</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card challenge-card">
+                <div class="card-header">
+                    <span class="badge">Reto</span>
+                    <h2>Reto final opcional</h2>
+                </div>
+                <p class="statement">Describe un flujo de trabajo integral y profesional en el que intervengan: clonación, desarrollo en ramas, Merge Request y validación por pipeline automatizada.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 220px; background-color: #f8fafc; border-left: 4px solid #f59e0b; overflow-y: auto;" readonly>
+                        <strong>Ecosistema de Trabajo Automatizado Extremo a Extremo:</strong>
+                        <ol style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Fase Local:</strong> El desarrollador descarga el software con <code>git clone</code>, crea una rama aislada (<code>feature/seguridad-tokens</code>) y realiza sus commits. Al escribir, los <em>hooks locales</em> formatean el código y validan la sintaxis antes del commit.</li>
+                            <li><strong>Publicación en GitLab:</strong> Se sube la rama mediante <code>git push origin feature/...</code> y se abre un <strong>Merge Request</strong> formal solicitando la revisión de los compañeros.</li>
+                            <li><strong>Validación Autómata:</strong> GitLab capta el evento y dispara de inmediato una <strong>Pipeline de integración</strong>. Los servidores automáticos ejecutan los tests unitarios y comprueban los estándares de calidad de la empresa.</li>
+                            <li><strong>Cierre del ciclo:</strong> El líder técnico del equipo revisa el reporte verde de la pipeline, aprueba visualmente el código del Merge Request y ejecuta el merge definitivo en <code>main</code>, disparando el despliegue automático del proyecto a producción.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+<a href="index.html" style="
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: #ffffff; 
+    color: #475569; 
+    text-decoration: none; 
+    padding: 10px 16px; 
+    border-radius: 30px; 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    z-index: 9999;
+" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#4f46e5'; this.style.color='#4f46e5';" 
+  onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.color='#475569';">
+    ← Volver al Inicio
+</a>
+</body>
+</html>

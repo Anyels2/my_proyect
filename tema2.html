@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicios - Tema 2: Ramas</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-color: #f8fafc;
+        --card-bg: #ffffff;
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --primary: #2563eb;
+        --primary-light: #eff6ff;
+        --accent: #0ea5e9;
+        --border-color: #e2e8f0;
+        --shadow:
+          0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-main);
+        line-height: 1.6;
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      h1 {
+        font-family: "Poppins", sans-serif;
+        color: var(--primary);
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+      }
+
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .badge {
+        background-color: var(--primary-light);
+        color: var(--primary);
+        font-weight: 600;
+        font-size: 0.85rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .card h2 {
+        font-family: "Poppins", sans-serif;
+        font-size: 1.25rem;
+        color: var(--text-main);
+      }
+
+      .card p {
+        color: var(--text-muted);
+        font-size: 0.95rem;
+      }
+
+      .code-inline {
+        background-color: #f1f5f9;
+        color: #0f172a;
+        padding: 0.1rem 0.4rem;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9em;
+      }
+
+      .challenge-card {
+        border-left: 5px solid var(--accent);
+        background: linear-gradient(to right, #f0f9ff, #ffffff);
+      }
+
+      .challenge-card .badge {
+        background-color: #e0f2fe;
+        color: #0369a1;
+      }
+
+      @media (max-width: 600px) {
+        h1 {
+          font-size: 2rem;
+        }
+        body {
+          padding: 1rem 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Ejercicios - Tema 2: Ramas</h1>
+        <p class="subtitle">
+          A continuación, encontrarás ejercicios prácticos sobre ramas en Git,
+          fusión de ramas, resolución de conflictos y tipos de ramas. Intenta
+          resolverlos antes de consultar la teoría.
+        </p>
+      </header>
+
+      <main class="grid">
+        <!-- Ejercicio 1 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 1</span>
+            <h2>Fusión de una rama sin conflicto</h2>
+          </div>
+          <p>
+            En la rama <span class="code-inline">feature/footer</span>, crea un
+            archivo llamado <span class="code-inline">footer.html</span> y
+            guarda los cambios con un commit. Después, vuelve a la rama
+            principal y fusiona <span class="code-inline">feature/footer</span>.
+            Comprueba el historial de commits y explica qué ha ocurrido tras
+            hacer el merge.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p>En la rama master no existe el fichero</p>
+            <p><img src="../image2-1.png" /></p>
+            <p><img src="../image2-2.png" /></p>
+            <p>
+              - Como master no tenía cambios nuevos que chocaran con la otra
+              rama, Git no necesitó crear un commit de fusión especial.
+              Simplemente "movió el puntero" de master hacia adelante hasta
+              alcanzar el commit 32b2abb de la rama feature/footer.
+            </p>
+            <p>
+              - Ahora ambas ramas apuntan exactamente al mismo último commit,
+              integrando el archivo footer.html en master de forma limpia y
+              lineal.
+            </p>
+          </div>
+        </section>
+
+        <!-- Ejercicio 2 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 2</span>
+            <h2>Provocar un conflicto sencillo</h2>
+          </div>
+          <p>
+            Crea una rama nueva llamada
+            <span class="code-inline">feature/title</span>. Modifica en esa rama
+            una misma línea del archivo
+            <span class="code-inline">README.md</span>, por ejemplo el título
+            principal, y haz un commit. Después, vuelve a la rama principal,
+            modifica exactamente esa misma línea con un contenido diferente y
+            haz otro commit. Intenta fusionar
+            <span class="code-inline">feature/title</span> en la rama principal
+            y observa qué mensaje muestra Git.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <p><img src="../image2-3.png" /></p>
+            <p><img src="../image2-5.png" /></p>
+            <p><img src="../image2-4.png" /></p>
+          </div>
+        </section>
+
+        <!-- Ejercicio 3 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 3</span>
+            <h2>Identificar archivos en conflicto</h2>
+          </div>
+          <p>Explica con tus palabras por qué se ha producido el conflicto.</p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <p>
+              Se ha producido porque dos ramas distintas (master y
+              feature/title) modificaron exactamente la misma línea del archivo
+              README.md con textos diferentes. Como ambos commits se hicieron en
+              paralelo, Git no puede adivinar de forma automática cuál de las
+              dos versiones es la correcta o cuál deseas conservar, por lo que
+              se detiene y te pide que como desarrolladora, tomes la decisión
+              manualmente.
+            </p>
+          </div>
+        </section>
+
+        <!-- Ejercicio 4 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 4</span>
+            <h2>Resolver un conflicto manualmente</h2>
+          </div>
+          <p>
+            Abre el archivo en conflicto y localiza las marcas
+            <span class="code-inline">&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span>,
+            <span class="code-inline">=======</span> y
+            <span class="code-inline">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>.
+            Resuelve el conflicto manualmente dejando una única versión final
+            coherente del contenido. Después, añade el archivo al área de
+            preparación y completa el proceso de fusión con el commit
+            correspondiente.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <p><img src="../image2-4.png" /></p>
+            <img src="../image2-6.png" width="95%" />
+            <img src="../image2-7.png" width="95%" />
+          </div>
+        </section>
+
+        <!-- Ejercicio 5 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 5</span>
+            <h2>Conflicto con varias líneas</h2>
+          </div>
+          <p>
+            Crea una nueva rama llamada
+            <span class="code-inline">feature/about</span> y añade una pequeña
+            sección de presentación en un archivo
+            <span class="code-inline">about.md</span>. Después, desde la rama
+            principal, modifica también esa misma sección pero con un texto
+            distinto. Intenta fusionar ambas ramas y resuelve el conflicto
+            combinando parte del contenido de las dos versiones en lugar de
+            quedarte solo con una.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <p><img src="../image2-8.png" width="95%" /></p>
+          </div>
+        </section>
+
+        <!-- Ejercicio 6 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 6</span>
+            <h2>Resolver un conflicto en VSCode o en GitHub</h2>
+          </div>
+          <p>
+            Provoca de nuevo un conflicto entre dos ramas modificando la misma
+            línea de un archivo. Si antes resolviste los conflictos usando
+            VSCode trata de resolverlo directamente en GitHub o viceversa.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <p><img src="../image2-9.png" width="95%" /></p>
+            <p><img src="../image2-10.png" width="95%" /></p>
+            <p><img src="../image2-11.png" width="95%" /></p>
+          </div>
+        </section>
+
+        <!-- Ejercicio 7 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 7</span>
+            <h2>Caso práctico completo</h2>
+          </div>
+          <p>
+            Imagina que estás trabajando en equipo y dos personas han editado la
+            misma parte del archivo <span class="code-inline">index.html</span>:
+            una ha cambiado el texto del encabezado y otra ha cambiado ese mismo
+            texto en otra rama distinta. Describe paso a paso cómo resolverías
+            el conflicto, indicando qué comandos usarías desde el momento en que
+            Git detecta el conflicto hasta que la fusión queda completada.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <table
+              border="1"
+              style="
+                border-collapse: collapse;
+                width: 100%;
+                font-family: &quot;Inter&quot;, sans-serif;
+              "
+            >
+              <thead>
+                <tr
+                  style="
+                    background-color: #2563eb;
+                    color: #ffffff;
+                    text-align: left;
+                  "
+                >
+                  <th style="padding: 12px; font-weight: 600">Paso</th>
+                  <th style="padding: 12px; font-weight: 600">
+                    Comando en la Terminal
+                  </th>
+                  <th style="padding: 12px; font-weight: 600">
+                    Qué hace el desarrollador / Qué ocurre
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    1. Detectar
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git merge rama-compañero
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Git detiene la fusión automáticamente y avisa en consola:
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >CONFLICT (content): Merge conflict in index.html</code
+                    >.
+                  </td>
+                </tr>
+                <tr style="background-color: #f8fafc">
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    2. Verificar
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git status
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Permite comprobar qué archivos están en conflicto.
+                    Aparecerán en rojo bajo la etiqueta
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >both modified: index.html</code
+                    >.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    3. Resolver
+                  </td>
+                  <td style="padding: 12px; font-style: italic; color: #64748b">
+                    Manual (en VS Code)
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Se abre
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >index.html</code
+                    >. El desarrollador limpia el código borrando las marcas
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code
+                    >,
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >=======</code
+                    >,
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code
+                    >
+                    y combinando los dos encabezados en uno final coherente.
+                  </td>
+                </tr>
+                <tr style="background-color: #f8fafc">
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    4. Preparar
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git add index.html
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Se añade el archivo al <em>Staging Area</em>. Esto le indica
+                    a Git que el conflicto de ese archivo ya ha sido
+                    solucionado.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    5. Concluir
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git commit -m "Fix: conflicto de encabezado resuelto"
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Se genera el commit de fusión (<em>Merge commit</em>). El
+                    repositorio vuelve a estar limpio y la terminal sale del
+                    estado
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >(master|MERGING)</code
+                    >.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Ejercicio 8 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 8</span>
+            <h2>Pull vs Fetch</h2>
+          </div>
+          <p>
+            Explica con tus palabras qué diferencia existe entre
+            <span class="code-inline">git pull</span> y
+            <span class="code-inline">git fetch</span>. Después, responde en qué
+            situación usarías cada uno y qué ventaja tiene revisar los cambios
+            antes de integrarlos en tu rama local.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <table
+              border="1"
+              style="
+                border-collapse: collapse;
+                width: 100%;
+                font-family: &quot;Inter&quot;, sans-serif;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <thead>
+                <tr
+                  style="
+                    background-color: #0ea5e9;
+                    color: #ffffff;
+                    text-align: left;
+                  "
+                >
+                  <th style="padding: 12px; font-weight: 600; width: 20%">
+                    Concepto / Comando
+                  </th>
+                  <th style="padding: 12px; font-weight: 600; width: 40%">
+                    git fetch
+                  </th>
+                  <th style="padding: 12px; font-weight: 600; width: 40%">
+                    git pull
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    ¿Qué hace?
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    <strong>Solo descarga</strong> los cambios del servidor
+                    remoto a tu base de datos local, pero no los aplica en tus
+                    archivos de trabajo.
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    <strong>Descarga y fusiona</strong> los cambios del servidor
+                    remoto directamente en tu rama actual en un solo paso.
+                  </td>
+                </tr>
+                <tr style="background-color: #f8fafc">
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    Impacto en tu código
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      color: #475569;
+                      color: #16a34a;
+                      font-weight: 500;
+                    "
+                  >
+                    Seguro. No altera tus archivos ni provoca conflictos
+                    inmediatos.
+                  </td>
+                  <td style="padding: 12px; color: #dc2626; font-weight: 500">
+                    Riesgoso. Puede modificar tus archivos y generar conflictos
+                    de inmediato si hay código solapado.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    Fórmula equivalente
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git fetch
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git fetch + git merge
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div
+              style="
+                background-color: #eff6ff;
+                border-left: 4px solid #2563eb;
+                padding: 15px;
+                border-radius: 4px;
+                font-family: &quot;Inter&quot;, sans-serif;
+              "
+            >
+              <strong style="color: #1e40af"
+                >💡 Ventaja de revisar los cambios antes de integrarlos:</strong
+              ><br />
+              Usar
+              <code
+                style="
+                  font-family: monospace;
+                  background-color: #dbeafe;
+                  padding: 2px 4px;
+                  border-radius: 4px;
+                "
+                >git fetch</code
+              >
+              te permite evaluar qué ha hecho tu equipo (usando
+              <code
+                style="
+                  font-family: monospace;
+                  background-color: #dbeafe;
+                  padding: 2px 4px;
+                  border-radius: 4px;
+                "
+                >git log origin/master</code
+              >) antes de mezclarlo con tu código. Esto evita sorpresas, te
+              permite planificar la resolución de posibles conflictos y
+              garantiza que no rompas tu entorno de trabajo local de forma
+              inesperada.
+            </div>
+          </div>
+        </section>
+
+        <!-- Ejercicio 9 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 9</span>
+            <h2>Actualizar un repositorio remoto</h2>
+          </div>
+          <p>
+            Clona un repositorio de prueba o utiliza uno que ya tengas. Después,
+            ejecuta el comando necesario para traer los cambios del repositorio
+            remoto sin fusionarlos automáticamente. A continuación, consulta el
+            estado del repositorio y el historial para comprobar qué información
+            nueva ha llegado.
+          </p>
+          <div class="body">
+            <h3>Solución</h3>
+            <p></p>
+            <table
+              border="1"
+              style="
+                border-collapse: collapse;
+                width: 100%;
+                font-family: &quot;Inter&quot;, sans-serif;
+              "
+            >
+              <thead>
+                <tr
+                  style="
+                    background-color: #2563eb;
+                    color: #ffffff;
+                    text-align: left;
+                  "
+                >
+                  <th style="padding: 12px; font-weight: 600; width: 15%">
+                    Paso
+                  </th>
+                  <th style="padding: 12px; font-weight: 600; width: 35%">
+                    Comando en la Terminal
+                  </th>
+                  <th style="padding: 12px; font-weight: 600; width: 50%">
+                    Explicación de lo que ocurre
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    1. Descargar
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git fetch origin
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Trae toda la información nueva y las ramas del servidor de
+                    GitHub a tu máquina, pero
+                    <strong>no modifica tus archivos de trabajo</strong>. Su
+                    espacio de trabajo sigue intacto.
+                  </td>
+                </tr>
+                <tr style="background-color: #f8fafc">
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    2. Verificar Estado
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git status
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Git te informará exactamente cuántos commits por detrás
+                    estás respecto al servidor con un mensaje estilo:
+                    <code
+                      style="
+                        font-family: monospace;
+                        background-color: #f1f5f9;
+                        padding: 2px 4px;
+                        border-radius: 4px;
+                      "
+                      >Your branch is behind 'origin/master' by X commits</code
+                    >.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px; font-weight: bold; color: #0f172a">
+                    3. Revisar Cambios
+                  </td>
+                  <td
+                    style="
+                      padding: 12px;
+                      font-family: monospace;
+                      background-color: #f1f5f9;
+                      color: #0f172a;
+                    "
+                  >
+                    git log master..origin/master --oneline
+                  </td>
+                  <td style="padding: 12px; color: #475569">
+                    Te muestra la lista de commits específicos que están en
+                    GitHub pero que tú todavía no has fusionado en tu rama
+                    local, permitiéndote auditar el código antes de integrarlo.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Ejercicio 10 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 10</span>
+            <h2>Git Stash</h2>
+          </div>
+          <p>
+            Realiza cambios en uno o varios archivos de tu repositorio sin hacer
+            commit. Después, guarda temporalmente esos cambios con
+            <span class="code-inline">git stash</span>. Comprueba que el
+            directorio de trabajo queda limpio y, a continuación, recupera los
+            cambios guardados. Explica para qué puede resultar útil esta
+            herramienta en un entorno colaborativo.
+          </p>
+            <div class="body" >
+                    <h3>Solución</h3>
+                    <p> </p>
+                    <table border="1" style="border-collapse: collapse; width: 100%; font-family: 'Inter', sans-serif; margin-bottom: 1.5rem;">
+    <thead>
+        <tr style="background-color: #0ea5e9; color: #ffffff; text-align: left;">
+            <th style="padding: 12px; font-weight: 600; width: 25%;">Acción</th>
+            <th style="padding: 12px; font-weight: 600; width: 35%;">Comando en la Terminal</th>
+            <th style="padding: 12px; font-weight: 600; width: 40%;">¿Qué ocurre en el repositorio?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 12px; font-weight: bold; color: #0f172a;">1. Guardar temporalmente</td>
+            <td style="padding: 12px; font-family: monospace; background-color: #f1f5f9; color: #0f172a;">git stash</td>
+            <td style="padding: 12px; color: #475569;">Toma tus modificaciones actuales (no guardadas en commit) y las oculta en una pila temporal. Tu directorio de trabajo queda completamente limpio (igual al último commit).</td>
+        </tr>
+        <tr style="background-color: #f8fafc;">
+            <td style="padding: 12px; font-weight: bold; color: #0f172a;">2. Listar el baúl</td>
+            <td style="padding: 12px; font-family: monospace; background-color: #f1f5f9; color: #0f172a;">git stash list</td>
+            <td style="padding: 12px; color: #475569;">Muestra el historial de elementos que tienes guardados en el stash bajo identificadores como <code style="font-family: monospace; background-color: #f1f5f9; padding: 2px 4px; border-radius: 4px;">stash@{0}</code>.</td>
+        </tr>
+        <tr>
+            <td style="padding: 12px; font-weight: bold; color: #0f172a;">3. Recuperar y limpiar</td>
+            <td style="padding: 12px; font-family: monospace; background-color: #f1f5f9; color: #0f172a;">git stash pop</td>
+            <td style="padding: 12px; color: #475569;">Devuelve los últimos cambios guardados a tus archivos de trabajo y los elimina automáticamente de la lista temporal del stash.</td>
+        </tr>
+    </tbody>
+</table>
+
+<div style="background-color: #eff6ff; border-left: 4px solid #2563eb; padding: 15px; border-radius: 4px; font-family: 'Inter', sans-serif;">
+    <strong style="color: #1e40af;">💡 ¿Para qué es útil en un entorno colaborativo?</strong><br>
+    Es indispensable cuando estás programando una nueva funcionalidad a medias y surge una urgencia (un fallo en producción o un compañero que necesita revisión de su código). En lugar de hacer un commit incompleto o perder tu progreso, haces <code style="font-family: monospace; background-color: #dbeafe; padding: 2px 4px; border-radius: 4px;">git stash</code>, cambias de rama para resolver la urgencia, regresas a tu rama y usas <code style="font-family: monospace; background-color: #dbeafe; padding: 2px 4px; border-radius: 4px;">git stash pop</code> para continuar exactamente donde lo dejaste.
+</div>
+                    
+                </div>
+        </section>
+
+        <!-- Ejercicio 11 -->
+        <section class="card">
+          <div class="card-header">
+            <span class="badge">Ejer 11</span>
+            <h2>Rebase</h2>
+          </div>
+          <p>
+            Crea una rama nueva a partir de master, realiza al menos un commit
+            en ella y después actualiza esa rama utilizando
+            <span class="code-inline">git rebase</span> sobre master. Explica
+            qué hace exactamente este comando y qué diferencia principal existe
+            entre usar merge y usar rebase.
+          </p>
+            <div class="body" >
+                    <h3>Solución</h3>
+                    <p> </p>
+                    <table border="1" style="border-collapse: collapse; width: 100%; font-family: 'Inter', sans-serif; margin-bottom: 1.5rem;">
+    <thead>
+        <tr style="background-color: #2563eb; color: #ffffff; text-align: left;">
+            <th style="padding: 12px; font-weight: 600; width: 25%;">Comando</th>
+            <th style="padding: 12px; font-weight: 600; width: 35%;">¿Qué hace exactamente?</th>
+            <th style="padding: 12px; font-weight: 600; width: 40%;">Resultado en el historial</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 12px; font-family: monospace; background-color: #f1f5f9; color: #0f172a; font-weight: bold;">git rebase master</td>
+            <td style="padding: 12px; color: #475569;">Toma los commits que hiciste en tu rama secundaria, los "desengancha" temporalmente, añade los nuevos commits que se hayan hecho en <code style="font-family: monospace; background-color: #f1f5f9; padding: 2px 4px; border-radius: 4px;">master</code> y luego vuelve a aplicar tus commits justo encima.</td>
+            <td style="padding: 12px; color: #475569;">Reescribe el historial para que parezca que creaste tu rama a partir del último commit de master, logrando una estructura <strong>completamente lineal y limpia</strong>.</td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="1" style="border-collapse: collapse; width: 100%; font-family: 'Inter', sans-serif;">
+    <thead>
+        <tr style="background-color: #475569; color: #ffffff; text-align: left;">
+            <th style="padding: 12px; font-weight: 600; width: 20%;">Estrategia</th>
+            <th style="padding: 12px; font-weight: 600; width: 40%;">Ventajas</th>
+            <th style="padding: 12px; font-weight: 600; width: 40%;">Desventajas</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding: 12px; font-weight: bold; color: #0f172a;">git merge</td>
+            <td style="padding: 12px; color: #475569;">Es seguro y <strong>no altera el pasado</strong>; mantiene la historia real de cuándo y cómo se hicieron las cosas de forma exacta.</td>
+            <td style="padding: 12px; color: #475569;">El historial puede volverse caótico, lleno de ramificaciones entrelazadas y commits de fusión innecesarios ("grafiti de Git").</td>
+        </tr>
+        <tr style="background-color: #f8fafc;">
+            <td style="padding: 12px; font-weight: bold; color: #0f172a;">git rebase</td>
+            <td style="padding: 12px; color: #475569;">Deja un historial lineal, limpio y extremadamente fácil de leer o auditar en proyectos grandes.</td>
+            <td style="padding: 12px; color: #475569; color: #dc2626; font-weight: 500;">Peligroso si se usa en ramas públicas compartidas, ya que reescribe los identificadores (SHA-1) de los commits existentes.</td>
+        </tr>
+    </tbody>
+</table>
+                    
+                </div>
+        </section>
+
+        <!-- Reto Final -->
+        <section class="card challenge-card">
+          <div class="card-header">
+            <span class="badge">Reto</span>
+            <h2>Reto final opcional</h2>
+          </div>
+          <p>
+            Crea un pequeño proyecto con una rama principal y al menos dos ramas
+            secundarias. Haz cambios distintos en varios archivos, provoca al
+            menos un conflicto real al fusionarlas y resuélvelo manualmente.
+            Después, revisa el historial de commits y explica qué estrategia has
+            seguido para dejar una versión final correcta del proyecto.
+          </p>
+        </section>
+      </main>
+    </div>
+    <a href="index.html" style="
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: #ffffff; 
+    color: #475569; 
+    text-decoration: none; 
+    padding: 10px 16px; 
+    border-radius: 30px; 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    z-index: 9999;
+" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#4f46e5'; this.style.color='#4f46e5';" 
+  onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.color='#475569';">
+    ← Volver al Inicio
+</a>
+  </body>
+</html>

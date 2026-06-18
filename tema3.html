@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios - Tema 3: Colaboración en Repositorios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --primary: #0284c7;
+            --primary-light: #f0f9ff;
+            --accent: #f59e0b;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --input-bg: #fdfdfd;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            font-size: 2.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: var(--primary-light);
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .card h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            color: var(--text-main);
+        }
+
+        .statement {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .code-inline {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+
+        /* Sección de Resolución */
+        .solution-section {
+            border-top: 1px dashed var(--border-color);
+            padding-top: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .solution-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #64748b;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .response-area {
+            width: 100%;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 1.25rem;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.02);
+        }
+
+        /* Contenedor para Imágenes */
+        .image-container {
+            border: 2px dashed #cbd5e1;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            padding: 2rem 1rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .image-container:hover {
+            background-color: #f1f5f9;
+            border-color: #94a3b8;
+            color: #64748b;
+        }
+
+        .challenge-card {
+            border-left: 5px solid var(--accent);
+        }
+
+        .challenge-card .badge {
+            background-color: #fef3c7;
+            color: #b45309;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            body { padding: 1rem 0.5rem; }
+            .card { padding: 1.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Ejercicios - Tema 3: Colaboración en Repositorios</h1>
+            <p class="subtitle">A continuación, encontrarás ejercicios prácticos sobre colaboración en repositorios Git. Intenta resolverlos antes de consultar la teoría.</p>
+        </header>
+
+        <main class="grid">
+            
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 1</span>
+                    <h2>Git Fork</h2>
+                </div>
+                <p class="statement">Investiga qué es un fork en plataformas como GitHub. Después, explica con tus palabras en qué se diferencia un fork de clonar un repositorio. Por último, describe una situación realista en la que un desarrollador preferiría hacer un fork antes que trabajar directamente como colaborador en el repositorio original.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 140px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Diferencia entre Fork y Clone:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                            <li><strong>Fork:</strong> Es una copia a nivel de servidor (en GitHub). Duplica un repositorio ajeno dentro de tu propia cuenta de la nube sin alterar el original. No requiere permisos del dueño.</li>
+                            <li><strong>Clone:</strong> Es una copia a nivel local. Descarga un repositorio desde la nube al disco duro de tu máquina para poder trabajar en él.</li>
+                        </ul>
+                        <strong>Situación realista de uso:</strong><br>
+                        Un desarrollador optará por un <strong>Fork</strong> al querer contribuir a un proyecto de Código Abierto (Open Source) del cual no es miembro oficial. Al no tener permisos de escritura directos, hace el Fork para trabajar en su cuenta y luego propone sus mejoras mediante un <em>Pull Request</em>.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 2</span>
+                    <h2>Repositorios públicos vs privados</h2>
+                </div>
+                <p class="statement">Explica qué diferencia existe entre un repositorio público y uno privado. Después, responde qué ventajas e inconvenientes puede tener cada tipo en un proyecto real. Intenta incluir al menos un ejemplo en el que elegirías un repositorio público y otro en el que optarías por uno privado.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 220px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Diferencia Fundamental:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                            <li><strong>Público:</strong> Cualquier persona en internet puede ver el código, clonarlo y seguir su desarrollo.</li>
+                            <li><strong>Privado:</strong> El código está oculto. Solo el propietario y los colaboradores explícitamente invitados pueden verlo.</li>
+                        </ul>
+                        
+                        <strong>Ventajas e Inconvenientes:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                            <li><strong>Público:</strong> Fomenta la colaboración masiva y sirve como portafolio, pero expone la propiedad intelectual de la empresa.</li>
+                            <li><strong>Privado:</strong> Ofrece seguridad total y control estricto de accesos, pero limita la retroalimentación de la comunidad.</li>
+                        </ul>
+
+                        <strong>Ejemplos de elección:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Público para:</strong> Una biblioteca de utilidades que quiero que otros desarrolladores usen y mejoren.</li>
+                            <li><strong>Privado para:</strong> El software comercial o el código confidencial desarrollado por Indra para un cliente.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 3</span>
+                    <h2>Colaboradores</h2>
+                </div>
+                <p class="statement">Crea un repositorio remoto en GitHub o imagina uno ya existente. Después, investiga cómo se añade un colaborador a un repositorio. Explica qué permisos puede tener esa persona dentro del proyecto y por qué es importante gestionar correctamente el acceso cuando varias personas trabajan sobre el mismo código.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Gestión de Colaboradores en GitHub:</strong><br>
+                        Para añadir a alguien, se accede a <em>Settings &gt; Collaborators &gt; Add people</em> dentro del repositorio remoto e introduciendo su nombre de usuario o correo electrónico.<br><br>
+                        
+                        <strong>Permisos y Seguridad:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Permisos habituales:</strong> Lectura (Read), Escritura (Write) para subir código directamente, y Administración (Admin) para gestionar la configuración del proyecto.</li>
+                            <li><strong>Importancia del control:</strong> Administrar correctamente los accesos evita la destrucción accidental del historial de commits, la fuga de código confidencial y la inyección de software no verificado o malicioso en la rama de producción.</li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Inserta captura de la pantalla de configuración de colaboradores de GitHub</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 4</span>
+                    <h2>Resolver un conflicto entre colaboradores</h2>
+                </div>
+                <p class="statement">Imagina que dos colaboradores están trabajando sobre el mismo repositorio y ambos modifican la misma línea de un archivo llamado <span class="code-inline">app.js</span>. Reproduce esta situación, provoca el conflicto e identifica las marcas de Git para solucionarlo manualmente. Explica qué ha ocurrido y qué pasos has seguido.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 240px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Análisis del Conflicto Colectivo:</strong><br>
+                        El conflicto se genera cuando el Colaborador 2 intenta hacer un <code>git pull</code> o fusionar sus cambios locales sin haber descargado previamente el commit que el Colaborador 1 ya subió al servidor remoto afectando a las mismas líneas de <code>app.js</code>.<br><br>
+                        
+                        <strong>Pasos para la resolución:</strong>
+                        <ol style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Detección:</strong> Al ejecutar el comando de integración, Git frena la operación e introduce las marcas de conflicto habituales (<code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, <code>=======</code>, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt; [rama/commit]</code>).</li>
+                            <li><strong>Resolución manual:</strong> Se edita <code>app.js</code> de mutuo acuerdo con el compañero, combinando lógicamente la estructura de ambas funciones en una versión final coherente y eliminando las marcas de Git.</li>
+                            <li><strong>Cierre del ciclo:</strong> Se ejecuta <code>git add app.js</code> seguido de un <code>git commit -m "Merge: resolución de conflicto en app.js con el equipo"</code> para unificar el historial y subir los cambios limpios con un <code>git push</code>.</li>
+                        </ol>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del archivo app.js con el conflicto detectado o resuelto</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 5</span>
+                    <h2>Forzar subida</h2>
+                </div>
+                <p class="statement">Investiga qué hace el comando <span class="code-inline">git push --force</span>. Después, explica por qué puede ser peligroso en un repositorio compartido. Finalmente, responde en qué situaciones muy concretas podría utilizarse y qué alternativa más segura existe para evitar sobrescribir el trabajo de otros compañeros.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 200px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Impacto del comando:</strong> Sobrescribe forzosamente el historial del servidor remoto con el contenido de tu copia local, destruyendo los commits intermedios que puedan existir en la nube.<br><br>
+                        <strong>Peligro colectivo:</strong> Si un compañero ha subido cambios al servidor y tú fuerzas la subida sin tenerlos, borrarás su trabajo de forma irreversible.<br><br>
+                        <strong>Alternativa segura:</strong> Utilizar <code>git push --force-with-lease</code>, el cual comprueba si hay modificaciones externas en el servidor y cancela la operación automáticamente en caso de detectar commits nuevos de tus compañeros.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 6</span>
+                    <h2>Borrar un repositorio</h2>
+                </div>
+                <p class="statement">Investiga cómo se puede eliminar un repositorio en una plataforma como GitHub. Después, explica qué consecuencias tiene esta acción y qué precauciones tomarías antes de borrar un repositorio remoto en el que ha trabajado más de una persona.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Procedimiento y consecuencias:</strong> Se borra en <em>Settings &gt; Danger Zone &gt; Delete this repository</em>. Esta acción destruye permanentemente la copia centralizada en la nube, los Pull Requests, issues, ramas del servidor y releases asociadas.<br><br>
+                        <strong>Precauciones esenciales:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Avisar fehacientemente y con antelación a todo el equipo de ingeniería involucrado.</li>
+                            <li>Realizar un clon de respaldo local completo (<em>backup</em>) que incluya todas las ramas y tags históricos antes de proceder.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 7</span>
+                    <h2>Tags</h2>
+                </div>
+                <p class="statement">Investiga qué es un tag en Git y explica con tus palabras para qué sirve. Después, crea un repositorio de prueba, realiza al menos un commit y añade un tag a ese punto del historial. Finalmente, ejecuta el comando necesario para mostrar todos los tags del repositorio.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Concepto:</strong> Un tag es una etiqueta o referencia estática inmutable asignada a un commit específico de la historia del proyecto. Sirve principalmente para marcar hitos o lanzamientos de versiones del software (ej. <code>v1.0.0</code>).<br><br>
+                        <strong>Comandos clave:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Crear tag ligero: <code>git tag v1.0.0</code></li>
+                            <li>Listar todos los tags del repositorio: <code>git tag</code> o <code>git tag -l</code></li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura de la terminal listando los tags creados</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 8</span>
+                    <h2>Tags anotados</h2>
+                </div>
+                <p class="statement">Crea varios commits en un repositorio y añade varios tags anotados cuando creas conveniente.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Tag ligero vs Tag anotado:</strong> A diferencia de los ligeros, los tags anotados se guardan como objetos completos en la base de datos de Git. Almacenan el nombre del creador, correo electrónico, fecha y un mensaje descriptivo.<br><br>
+                        <strong>Comandos de ejecución:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li>Crear tag anotado: <code>git tag -a v1.1.0 -m "Release oficial versión 1.1.0 con mejoras estables"</code></li>
+                            <li>Visualizar metadatos y detalles completos del tag: <code>git show v1.1.0</code></li>
+                        </ul>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del historial mostrando los detalles del tag anotado (git show)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 9</span>
+                    <h2>Releases</h2>
+                </div>
+                <p class="statement">Crea una release usando algunos de los tags anteriores.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 160px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Concepto de Release en GitHub:</strong> Es un envoltorio visual y de distribución construido obligatoriamente encima de un Git Tag existente. Permite adjuntar notas de lanzamiento formateadas en Markdown (changelogs) y empaquetar binarios compilados o instaladores listos para el cliente final.<br><br>
+                        <strong>Flujo:</strong> Se sube el tag con <code>git push origin v1.1.0</code> y desde GitHub en la pestaña <em>Releases &gt; Draft a new release</em> se vincula y publica.
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura de pantalla de la sección Releases de tu repositorio en GitHub</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 10</span>
+                    <h2>.gitignore</h2>
+                </div>
+                <p class="statement">Crea un repositorio de prueba con varios archivos y carpetas, incluyendo elementos que no deberían subirse (temporales, dependencias o configuraciones). Crea un archivo <span class="code-inline">.gitignore</span> y añade reglas. Comprueba que Git deja de mostrarlos como cambios pendientes.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Estructura típica de un archivo .gitignore:</strong><br>
+                        Contiene patrones de exclusión que Git lee para omitir el rastreo de archivos no deseados. Ejemplo de configuración:<br>
+                        <pre style="background: #f1f5f9; padding: 8px; border-radius: 4px; font-family: monospace; font-size: 0.85rem; margin-top:5px;">
+node_modules/      # Ignora directorios enteros de dependencias
+.env               # Ignora archivos de credenciales o claves privadas
+*.log              # Ignora todos los volcados de texto y logs temporales
+.DS_Store          # Ignora metadatos automáticos del sistema operativo</pre>
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del comando git status donde se vea que ignora los archivos especificados</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 11</span>
+                    <h2>Hotfixes</h2>
+                </div>
+                <p class="statement">Explica qué es un hotfix en Git y en qué situación se utiliza. Después, imagina que una aplicación ya publicada tiene un error urgente en producción. Describe qué pasos seguirías para crear una rama de hotfix, corregir el problema, integrar el arreglo en la rama principal and dejar el repositorio preparado.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 220px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Concepto:</strong> Un hotfix es una rama de corrección urgente que se abre directamente desde la rama de producción (<code>master</code>/<code>main</code>) para solucionar un fallo crítico que está afectando a los usuarios en vivo.<br><br>
+                        <strong>Secuencia lógica de pasos:</strong>
+                        <ol style="margin-left: 20px; margin-top: 5px;">
+                            <li>Crear rama desde master: <code>git checkout -b hotfix/error-login master</code></li>
+                            <li>Corregir el código en los archivos locales, probar y consolidar con <code>git commit</code>.</li>
+                            <li>Fusionar la corrección de vuelta en la rama de producción: <code>git checkout master</code> + <code>git merge hotfix/error-login</code>.</li>
+                            <li>Integrar la misma solución en la rama de desarrollo (<code>develop</code>) para no perder el arreglo en futuras versiones y eliminar la rama temporal.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 12</span>
+                    <h2>Trunk Based Development</h2>
+                </div>
+                <p class="statement">Investiga en qué consiste el workflow trunk based. Después, explica cómo se organiza el trabajo en este modelo, qué papel tiene la rama principal y qué ventajas puede tener en equipos que integran cambios con mucha frecuencia.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 180px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Metodología Trunk-Based:</strong> Los desarrolladores integran sus cambios directamente en una única rama central estable (el "Trunk" o <code>main</code>) de forma muy frecuente (incluso varias veces al día), usando ramas auxiliares muy cortas que duran pocas horas.<br><br>
+                        <strong>Ventajas principales:</strong> Elimina drásticamente los conflictos masivos de fusión al final de los sprints (<em>merge hell</em>), fomenta la integración continua (CI/CD) y asegura que el equipo siempre trabaje sobre la base de código más reciente.
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 13</span>
+                    <h2>Forking Workflow y Feature Branch Workflow</h2>
+                </div>
+                <p class="statement">Explica con tus palabras en qué consiste el forking workflow y en qué consiste el feature branch workflow. Después, compáralos brevemente indicando en qué se diferencian y en qué tipo de proyecto o equipo podría ser más recomendable cada uno de ellos.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 200px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Comparativa de arquitecturas de trabajo:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Feature Branch Workflow:</strong> Todo el equipo trabaja sobre el mismo repositorio centralizado utilizando ramas específicas para cada funcionalidad (<code>feature/nueva-vista</code>). Es el estándar óptimo para equipos internos corporativos de confianza regulada.</li>
+                            <li><strong>Forking Workflow:</strong> Cada programador clona una copia completa del proyecto en su cuenta personal e independiente en el servidor. Recomendado estrictamente para proyectos de código abierto de gran envergadura o colaboraciones puntuales de proveedores externos sin acceso directo.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <span class="badge">Ejer 14</span>
+                    <h2>Gitflow Workflow</h2>
+                </div>
+                <p class="statement">Investiga cómo funciona el workflow gitflow. Identifica qué papel suelen tener ramas como master, develop, feature, release y hotfix. Responde qué ventajas e inconvenientes puede tener este modelo en proyectos grandes.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 240px; background-color: #f8fafc; border-left: 4px solid #0284c7; overflow-y: auto;" readonly>
+                        <strong>Estructura estricta de ramas en Gitflow:</strong>
+                        <ul style="margin-left: 20px; margin-top: 5px; margin-bottom: 10px;">
+                            <li><code>master / main</code>: Aloja exclusivamente el código en producción plenamente estable.</li>
+                            <li><code>develop</code>: Historial central de integración para desarrollo; la base de las nuevas características.</li>
+                            <li><code>feature/*</code>: Ramas individuales destinadas al desarrollo de funcionalidades específicas.</li>
+                            <li><code>release/*</code>: Preparación previa, pulido y control de calidad antes del despliegue masivo en producción.</li>
+                            <li><code>hotfix/*</code>: Parches rápidos y urgentes aplicados directamente sobre producción.</li>
+                        </ul>
+                        <strong>Ventajas y Contras:</strong> Proporciona un orden absoluto y un control milimétrico del ciclo de publicaciones, ideal para software de despliegues tradicionales; sin embargo, resulta demasiado pesado, rígido y complejo para equipos modernos que aplican despliegue continuo.
+                    </div>
+                    <div class="image-container">
+                        <span>📷 Captura del árbol de ramas locales creadas en tu terminal (git branch)</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card challenge-card">
+                <div class="card-header">
+                    <span class="badge">Reto</span>
+                    <h2>Reto final opcional</h2>
+                </div>
+                <p class="statement">Imagina que formas parte de un equipo que va a publicar una nueva versión de un proyecto. Describe un flujo de trabajo completo en el que intervengan los conceptos estudiados explicando el orden lógico de los pasos.</p>
+                <div class="solution-section">
+                    <div class="solution-title">Tu Resolución</div>
+                    <div class="response-area" style="min-height: 240px; background-color: #f8fafc; border-left: 4px solid #f59e0b; overflow-y: auto;" readonly>
+                        <strong>Flujo Cronológico Profesional de Lanzamiento:</strong>
+                        <ol style="margin-left: 20px; margin-top: 5px;">
+                            <li><strong>Inicialización:</strong> Se configura un archivo <code>.gitignore</code> para proteger credenciales y dependencias del entorno compartido.</li>
+                            <li><strong>Desarrollo paralelo:</strong> Siguiendo el <em>Feature Branch Workflow</em>, se abren ramas <code>feature/*</code> individuales que se consolidan en <code>develop</code> mediante Pull Requests validados.</li>
+                            <li><strong>Preparación del entregable:</strong> Se abre una rama de estabilización <code>release/v2.0.0</code> para corregir pequeños detalles de última hora.</li>
+                            <li><strong>Despliegue y Marcado:</strong> Se realiza el merge de la release de vuelta a <code>main</code>. En ese commit exacto se genera un <strong>Tag anotado</strong> (<code>git tag -a v2.0.0</code>) y se publica una <strong>Release</strong> oficial en GitHub adjuntando el instalador compilado.</li>
+                            <li><strong>Mantenimiento:</strong> Si aparece un bug crítico en vivo, se abre de inmediato un <code>hotfix/*</code> desde <code>main</code>, se corrige de urgencia, se fusiona de vuelta a <code>main</code> (etiquetándolo como <code>v2.0.1</code>) y se sincroniza inmediatamente con <code>develop</code>.</li>
+                        </ol>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <button id="save-btn" style="position: fixed; bottom: 20px; right: 20px; background: #2563eb; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.15); z-index: 1000; display: none;">💾 Guardar Respuestas</button>
+    <a href="index.html" style="
+    position: fixed; 
+    top: 20px; 
+    left: 20px; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    background: #ffffff; 
+    color: #475569; 
+    text-decoration: none; 
+    padding: 10px 16px; 
+    border-radius: 30px; 
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+    border: 1px solid #e2e8f0;
+    transition: all 0.2s ease;
+    z-index: 9999;
+" onmouseover="this.style.transform='translateY(-2px)'; this.style.borderColor='#4f46e5'; this.style.color='#4f46e5';" 
+  onmouseout="this.style.transform='translateY(0)'; this.style.borderColor='#e2e8f0'; this.style.color='#475569';">
+    ← Volver al Inicio
+</a>
+
+</body>
+</html>
